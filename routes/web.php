@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,17 +18,32 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function() {
 //    return view('welcome');
 //});
+Route::get('/', [WebController::class, 'home'])->name('web.home');
+//Route::get('/home', [WebController::class, 'home'])->name('home');
+//Route::get('/home', function() {
+//    return view('home');
+//})->name('home');
 
-Route::get('/', function() {
-    return view('home');
-});
-Route::get('/home', function() {
-    return view('home');
-});
+
+Route::resource('admin/products', ProductController::class)->names('admin.products');
+Route::get('admin/products/change/{product}', [ProductController::class, 'change_status'])->name('admin.products.change');
+
+
+Route::get('/products', [WebController::class, 'products'])->name('web.products');
+Route::get('/product_details/{slug}', [WebController::class, 'product_details'])->name('web.product_details');
+
+Route::get('/login', [WebController::class, 'login'])->name('web.login');
+Route::get('/my_account', [WebController::class, 'my_account'])->name('web.my_account');
+
+Route::get('/cart', [WebController::class, 'cart'])->name('web.cart');
+Route::get('/checkout', [WebController::class, 'checkout'])->name('web.checkout');
+Route::get('/wishlist', [WebController::class, 'wishlist'])->name('web.wishlist');
+
+/*
 Route::get('/products', function() {
     return view('web.products');
 });
-Route::get('/product/details', function() {
+Route::get('/product-details', function() {
     return view('web.product_details');
 });
 Route::get('/my_account', function() {
@@ -56,3 +73,4 @@ Route::get('/aboutus', function() {
 Route::get('/wishlist', function() {
     return view('web.wishlist');
 });
+*/

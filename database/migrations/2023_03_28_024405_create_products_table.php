@@ -13,10 +13,12 @@ return new class extends Migration {
             $table->id();
             $table->string('code')->unique()->nullable();
             $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->integer('stock')->default(0);
-            $table->string('image');
             $table->decimal('sell_price', 12, 2);
-            $table->enum('status', ['ACTIVE', 'DEACTIVATE']);
+            $table->mediumText('short_description');
+            $table->longText('long_description');
+            $table->enum('status', ['ACTIVE', 'DEACTIVATE'])->default('ACTIVE');
             $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
         });
