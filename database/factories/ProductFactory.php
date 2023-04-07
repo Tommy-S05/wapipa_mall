@@ -27,6 +27,7 @@ class ProductFactory extends Factory
             'short_description' => $this->faker->realText(360, 2),
             //            'short_description' => $this->faker->paragraph(4),
             'long_description' => $this->faker->paragraph(12),
+            'state' => $this->faker->randomElement(['NEW', 'LIKE NEW', 'USED']),
             "category_id" => Category::inRandomOrder()->value('id') ?: factory(Category::class),
         ];
     }

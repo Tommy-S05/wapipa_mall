@@ -196,7 +196,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Jackiedo\Cart\CartServiceProvider::class,
+
         App\Providers\ShoppingCartProvider::class,
+        App\Providers\CategoryProvider::class,
 
     ],
 
@@ -213,6 +216,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Cart' => Jackiedo\Cart\Facades\Cart::class,
     ])->toArray(),
 
 ];

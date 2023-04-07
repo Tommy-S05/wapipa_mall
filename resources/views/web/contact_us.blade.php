@@ -18,7 +18,7 @@
                         <div class="breadcrumb-wrap">
                             <nav aria-label="breadcrumb">
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('web.home') }}">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">contact us</li>
                                 </ul>
                             </nav>
@@ -35,9 +35,9 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="contact-message">
-                            <h2>tell us your project</h2>
+                            <h2>tell us</h2>
                             <form id="contact-form"
-                                  action="http://demo.hasthemes.com/galio-v6/galio/assets/php/mail.php" method="post"
+                                  action="" method="post"
                                   class="contact-form">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6">
@@ -71,17 +71,22 @@
                     <div class="col-lg-6">
                         <div class="contact-info mt-md-28 mt-sm-28">
                             <h2>contact us</h2>
-                            <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-                                Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit
-                                litterarum formas human.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                                est laborum.</p>
                             <ul>
-                                <li><i class="fa fa-fax"></i> Address : No 40 Baria Sreet 133/2 NewYork City</li>
-                                <li><i class="fa fa-phone"></i> info@yourdomain.com</li>
-                                <li><i class="fa fa-envelope-o"></i> +88013245657</li>
+                                <li><i class="fa fa-fax"></i> Address: Ensanche Paraiso, Calle 6 #21, Torre Europa,
+                                    Santo Domingo
+                                </li>
+                                <li><i class="fa fa-phone"></i> info@wapipa.com</li>
+                                <li><i class="fa fa-envelope-o"></i>+1 (809) 852-2693</li>
                             </ul>
                             <div class="working-time">
                                 <h3>Working hours</h3>
-                                <p><span>Monday – Saturday:</span>08AM – 22PM</p>
+                                <p><span>Monday – Saturday:</span>08AM – 6PM</p>
                             </div>
                         </div>
                     </div>

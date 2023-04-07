@@ -18,8 +18,8 @@
                             <nav aria-label="breadcrumb">
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('web.home') }}">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="shop-grid-left-sidebar.html">shop</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">cart</li>
+                                    <li class="breadcrumb-item"><a href="{{ route('web.products') }}">Products</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Cart</li>
                                 </ul>
                             </nav>
                         </div>
@@ -44,62 +44,51 @@
                                     <th class="pro-price">Price</th>
                                     <th class="pro-quantity">Quantity</th>
                                     <th class="pro-subtotal">Total</th>
-                                    <th class="pro-remove">Remove</th>
+                                    <th class="pro-remove">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid"
-                                                                               src="{{ asset('galio/assets/img/product/product-img2.jpg') }}"
-                                                                               alt="Product"/></a></td>
-                                    <td class="pro-title"><a href="#">k2 snowboard 2018</a></td>
-                                    <td class="pro-price"><span>$295.00</span></td>
-                                    <td class="pro-quantity">
-                                        <div class="pro-qty"><input type="text" value="1"></div>
-                                    </td>
-                                    <td class="pro-subtotal"><span>$295.00</span></td>
-                                    <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid"
-                                                                               src="{{ asset('galio/assets/img/product/product-img3.jpg') }}"
-                                                                               alt="Product"/></a></td>
-                                    <td class="pro-title"><a href="#">Aquet Drone D 420</a></td>
-                                    <td class="pro-price"><span>$275.00</span></td>
-                                    <td class="pro-quantity">
-                                        <div class="pro-qty"><input type="text" value="2"></div>
-                                    </td>
-                                    <td class="pro-subtotal"><span>$550.00</span></td>
-                                    <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid"
-                                                                               src="{{ asset('galio/assets/img/product/product-img4.jpg') }}"
-                                                                               alt="Product"/></a></td>
-                                    <td class="pro-title"><a href="#">berzerker snowboard</a></td>
-                                    <td class="pro-price"><span>$295.00</span></td>
-                                    <td class="pro-quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1"/>
-                                        </div>
-                                    </td>
-                                    <td class="pro-subtotal"><span>$295.00</span></td>
-                                    <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid"
-                                                                               src="{{ asset('galio/assets/img/product/product-img5.jpg') }}"
-                                                                               alt="Product"/></a></td>
-                                    <td class="pro-title"><a href="#">element snowboard</a></td>
-                                    <td class="pro-price"><span>$110.00</span></td>
-                                    <td class="pro-quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="3"/>
-                                        </div>
-                                    </td>
-                                    <td class="pro-subtotal"><span>$110.00</span></td>
-                                    <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                </tr>
+                                @foreach($shopping_cart->getDetails()->items as $item)
+                                    <tr>
+                                        <td class="pro-thumbnail"><a href="#"><img class="img-fluid"
+                                                                                   src="{{ asset($item->extra_info->url) }}"
+                                                                                   alt="{{ $item->title }}"/></a></td>
+                                        <td class="pro-title"><a href="#">{{ $item->title }}</a></td>
+                                        <td class="pro-price"><span>${{ number_format($item->price, 2) }}</span></td>
+                                        <form id="upadate_cart_{{$item->hash}}" action="{{ route('web.update_cart') }}"
+                                              method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <td class="pro-quantity">
+                                                <input type="hidden" name="hash" value="{{ $item->hash }}">
+                                                <div class="pro-qty"><input type="text" name="quantity"
+                                                                            value="{{ $item->quantity }}">
+                                                </div>
+                                            </td>
+                                        </form>
+
+                                        <td class="pro-subtotal">
+                                            <span>${{ number_format($item->total_price, 2) }}</span></td>
+                                        <td class="pro-remove">
+                                            <div class="cart-update mt-sm-16 mb-3">
+                                                <a onclick="javascript:document.getElementById(`upadate_cart_{{$item->hash}}`).submit(); return false;"
+                                                   href="#" class="sqr-btn" style="color: white">Update</a>
+                                            </div>
+                                            <div class="cart-update mt-sm-16 mb-3">
+                                                <form id="delete_cart_{{$item->hash}}"
+                                                      action="{{ route('web.delete_cart') }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="hash" value="{{ $item->hash }}">
+                                                </form>
+                                                <a onclick="javascript:document.getElementById(`delete_cart_{{$item->hash}}`).submit(); return false;"
+                                                   href="#" class="sqr-btn" style="color: white">Delete</a>
+                                            </div>
+                                            {{--                                            <a href="#"><i class="fa fa-trash-o"></i>--}}
+                                            {{--                                            </a>--}}
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -107,13 +96,10 @@
                         <!-- Cart Update Option -->
                         <div class="cart-update-option d-block d-md-flex justify-content-between">
                             <div class="apply-coupon-wrapper">
-                                <form action="#" method="post" class=" d-block d-md-flex">
-                                    <input type="text" placeholder="Enter Your Coupon Code" required/>
-                                    <button class="sqr-btn">Apply Coupon</button>
-                                </form>
-                            </div>
-                            <div class="cart-update mt-sm-16">
-                                <a href="#" class="sqr-btn">Update Cart</a>
+                                {{--                                <form action="#" method="post" class=" d-block d-md-flex">--}}
+                                {{--                                    <input type="text" placeholder="Enter Your Coupon Code" required/>--}}
+                                {{--                                    <button class="sqr-btn">Apply Coupon</button>--}}
+                                {{--                                </form>--}}
                             </div>
                         </div>
                     </div>
@@ -129,20 +115,22 @@
                                     <table class="table">
                                         <tr>
                                             <td>Sub Total</td>
-                                            <td>$230</td>
+                                            <td>${{ number_format($shopping_cart->getSubtotal(), 2) }}</td>
                                         </tr>
                                         <tr>
                                             <td>Shipping</td>
-                                            <td>$70</td>
+                                            <td>Free</td>
                                         </tr>
                                         <tr class="total">
                                             <td>Total</td>
-                                            <td class="total-amount">$300</td>
+                                            <td class="total-amount">
+                                                ${{ number_format($shopping_cart->getSubtotal(), 2) }}
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
-                            <a href="checkout.html" class="sqr-btn d-block">Proceed To Checkout</a>
+                            <a href="{{ route('web.checkout') }}" class="sqr-btn d-block">Proceed To Checkout</a>
                         </div>
                     </div>
                 </div>

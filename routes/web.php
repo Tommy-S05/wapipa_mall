@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 Route::get('/', [WebController::class, 'home'])->name('web.home');
-//Route::get('/home', [WebController::class, 'home'])->name('home');
+//Route::get('/', [WebController::class, 'products'])->name('web.products');
+Route::get('/home', [WebController::class, 'home'])->name('home');
 //Route::get('/home', function() {
 //    return view('home');
 //})->name('home');
@@ -30,14 +33,30 @@ Route::get('admin/products/change/{product}', [ProductController::class, 'change
 
 
 Route::get('/products', [WebController::class, 'products'])->name('web.products');
+Route::get('/products/{product_slug}', [WebController::class, 'productsByCategory'])->name('web.products_category');
 Route::get('/product_details/{slug}', [WebController::class, 'product_details'])->name('web.product_details');
 
-Route::get('/login', [WebController::class, 'login'])->name('web.login');
-Route::get('/my_account', [WebController::class, 'my_account'])->name('web.my_account');
+Route::get('/login_register', [AuthController::class, 'login_register'])->name('web.login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/logout', [AuthController::class, 'logout'])->name('web.logout')->middleware('auth');
+Route::get('/my_account', [WebController::class, 'my_account'])->name('web.my_account')->middleware('auth');
 
-Route::get('/cart', [WebController::class, 'cart'])->name('web.cart');
+Route::get('/shopping_cart', [WebController::class, 'cart'])->name('web.shopping_cart');
+//Route::get('product/add_cart/{product_slug}/{quantity}', [ShoppingCartController::class, 'add'])->name('web.add_cart');
+Route::post('product/add_cart', [ShoppingCartController::class, 'add'])->name('web.add_cart');
+Route::put('product/update_cart', [ShoppingCartController::class, 'update_product'])->name('web.update_cart');
+Route::delete('product/delete_cart', [ShoppingCartController::class, 'delete_product'])->name('web.delete_cart');
+Route::delete('product/empty_cart', [ShoppingCartController::class, 'delete_product'])->name('web.empty_cart');
+Route::get('product/destroy_cart', [ShoppingCartController::class, 'destroy'])->name('web.destroy_cart');
+
 Route::get('/checkout', [WebController::class, 'checkout'])->name('web.checkout');
+
 Route::get('/wishlist', [WebController::class, 'wishlist'])->name('web.wishlist');
+
+Route::get('/contactus', [WebController::class, 'contact_us'])->name('web.contact_us');
+
+
 
 /*
 Route::get('/products', function() {

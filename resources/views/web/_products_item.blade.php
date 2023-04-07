@@ -18,8 +18,13 @@
                 <a href="#" data-toggle="tooltip" data-placement="left"
                    title="Wishlist"><i
                         class="fa fa-heart-o"></i></a>
-                <a href="#" data-toggle="tooltip" data-placement="left"
-                   title="Add to cart"><i
+                <form id="add_cart_1_{{$product->id}}" action="{{ route('web.add_cart') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_slug" value="{{ $product->slug }}">
+                    <input type="hidden" name="quantity" value="1">
+                </form>
+                <a onclick="javascript:document.getElementById(`add_cart_1_{{$product->id}}`).submit(); return false;"
+                   href="#" data-toggle="tooltip" data-placement="left" title="Add to cart"><i
                         class="fa fa-shopping-cart"></i></a>
             </div>
         </div>
@@ -50,9 +55,17 @@
             </div>
             <p>{{ $product->short_description }}</p>
             <div class="product-list-action-link">
-                <a class="buy-btn" href="#" data-toggle="tooltip" data-placement="top"
-                   title="Add to cart">go to buy <i class="fa fa-shopping-cart"></i>
+                <form id="add_cart_2_{{$product->id}}" action="{{ route('web.add_cart') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_slug" value="{{ $product->slug }}">
+                    <input type="hidden" name="quantity" value="1">
+                </form>
+                <a class="buy-btn"
+                   onclick="javascript:document.getElementById(`add_cart_2_{{$product->id}}`).submit(); return false;"
+                   href="#" data-toggle="tooltip"
+                   data-placement="top" title="Add to cart">go to buy <i class="fa fa-shopping-cart"></i>
                 </a>
+
                 <a href="#" data-toggle="modal" data-target="#quick_view{{ $product->id }}"> <span
                         data-toggle="tooltip" data-placement="top" title="Quick view"><i
                             class="fa fa-search"></i></span> </a>

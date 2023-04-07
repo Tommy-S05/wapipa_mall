@@ -19,7 +19,7 @@
                         <div class="breadcrumb-wrap">
                             <nav aria-label="breadcrumb">
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('web.home') }}">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">my account</li>
                                 </ul>
                             </nav>
@@ -54,7 +54,11 @@
                                             address</a>
                                         <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Account
                                             Details</a>
-                                        <a href="login-register.html"><i class="fa fa-sign-out"></i> Logout</a>
+                                        <form id="form_logout" action="{{ route('web.logout') }}" method="POST">
+                                            @csrf
+                                        </form>
+                                        <a onclick="javascript:document.getElementById(`form_logout`).submit(); return false;"
+                                           href="#"><i class="fa fa-sign-out"></i> Logout</a>
                                     </div>
                                 </div>
                                 <!-- My Account Tab Menu End -->

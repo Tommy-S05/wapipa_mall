@@ -21,10 +21,15 @@ class ProductSeeder extends Seeder
             'sell_price' => 45500.00,
             'short_description' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus turpis in eu mi.",
             'long_description' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sollicitudin nibh sit amet commodo nulla. Fusce id velit ut tortor. Malesuada pellentesque elit eget gravida.",
+            'state' => 'NEW',
             'category_id' => 1
         ]);
         $image_url[0]['url'] = 'images/Laptop-Gamer-Lenovo-Core-I7-L340.jpg';
         $image_url[1]['url'] = 'images/Laptop-Gamer-Lenovo-Core-I7-L340-2.jpg';
+        $image_url[2]['url'] = 'images/Laptop-Gamer-Lenovo-Core-I7-L340-3.jpg';
+        $image_url[3]['url'] = 'images/Laptop-Gamer-Lenovo-Core-I7-L340-4.jpg';
+        $image_url[4]['url'] = 'images/Laptop-Gamer-Lenovo-Core-I7-L340-5.jpg';
+        $image_url[5]['url'] = 'images/Laptop-Gamer-Lenovo-Core-I7-L340-6.jpg';
         $product->images()->createMany($image_url);
         //        $product1 = new Product();
         //        $product1->code = "0001";
@@ -46,10 +51,15 @@ class ProductSeeder extends Seeder
             'sell_price' => 115500.00,
             'short_description' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus turpis in eu mi.",
             'long_description' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sollicitudin nibh sit amet commodo nulla. Fusce id velit ut tortor. Malesuada pellentesque elit eget gravida.",
+            'state' => 'NEW',
             'category_id' => 2
         ]);
         $image_url[0]['url'] = 'images/Iphone-14-Pro-Max.jpg';
         $image_url[1]['url'] = 'images/Iphone-14-Pro-Max-2.jpg';
+        $image_url[2]['url'] = 'images/Iphone-14-Pro-Max-3.jpg';
+        $image_url[3]['url'] = 'images/Iphone-14-Pro-Max-4.jpg';
+        $image_url[4]['url'] = 'images/Iphone-14-Pro-Max-5.jpg';
+        $image_url[5]['url'] = 'images/Iphone-14-Pro-Max-6.jpg';
         $product->images()->createMany($image_url);
         //        $product2 = new Product();
         //        $product2->code = "0002";

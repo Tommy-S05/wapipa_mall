@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
@@ -21,12 +22,15 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            UserSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
         ]);
 
-        Product::factory(15)->create()->each(function($product) {
-            $product->images()->saveMany(Image::factory(5)->make());
+        Product::factory(40)->create()->each(function($product) {
+            $product->images()->saveMany(Image::factory(6)->make());
         });
+
+        Category::factory(5)->create();
     }
 }

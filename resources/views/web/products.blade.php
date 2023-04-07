@@ -38,104 +38,52 @@
                             <div class="sidebar-category">
                                 <ul>
                                     <li class="title"><i class="fa fa-bars"></i> categories</li>
-                                    <li><a href="#">books</a><span>(10)</span></li>
-                                    <li><a href="#">camera</a><span>(12)</span></li>
-                                    <li><a href="#">computer</a><span>(08)</span></li>
-                                    <li><a href="#">electronic</a><span>(16)</span></li>
-                                    <li><a href="#">Necklaces</a><span>(11)</span></li>
-                                    <li><a href="#">Rugby</a><span>(20)</span></li>
-                                    <li><a href="#">smart phones</a><span>(15)</span></li>
-                                    <li><a href="#">tablet</a><span>(12)</span></li>
-                                    <li><a href="#">watch</a><span>(10)</span></li>
+                                    <li>
+                                        <a href="{{ route('web.products') }}">
+                                            All
+                                        </a>
+                                    </li>
+                                    @foreach($categories as $category)
+                                        <li>
+                                            <a href="{{ route('web.products_category', $category->slug) }}">
+                                                {{ $category->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
                         <!-- sidebar categorie start -->
 
-                        <!-- manufacturer start -->
-                        <div class="sidebar-widget mb-30">
-                            <div class="sidebar-title mb-10">
-                                <h3>Manufacturers</h3>
-                            </div>
-                            <div class="sidebar-widget-body">
-                                <ul>
-                                    <li><i class="fa fa-angle-right"></i><a href="#">calvin klein</a><span>(10)</span>
-                                    </li>
-                                    <li><i class="fa fa-angle-right"></i><a href="#">diesel</a><span>(12)</span></li>
-                                    <li><i class="fa fa-angle-right"></i><a href="#">polo</a><span>(20)</span></li>
-                                    <li><i class="fa fa-angle-right"></i><a href="#">Tommy Hilfiger</a><span>(12)</span>
-                                    </li>
-                                    <li><i class="fa fa-angle-right"></i><a href="#">Versace</a><span>(16)</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- manufacturer end -->
-
                         <!-- pricing filter start -->
-                        <div class="sidebar-widget mb-30">
-                            <div class="sidebar-title mb-10">
-                                <h3>filter by price</h3>
-                            </div>
-                            <div class="sidebar-widget-body">
-                                <div class="price-range-wrap">
-                                    <div class="price-range" data-min="50" data-max="400"></div>
-                                    <div class="range-slider">
-                                        <form action="#" class="d-flex justify-content-between">
-                                            <button class="filter-btn">filter</button>
-                                            <div class="price-input d-flex align-items-center">
-                                                <label for="amount">Price: </label>
-                                                <input type="text" id="amount">
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- pricing filter end -->
-
-                        <!-- product size start -->
-                        <div class="sidebar-widget mb-30">
-                            <div class="sidebar-title mb-10">
-                                <h3>size</h3>
-                            </div>
-                            <div class="sidebar-widget-body">
-                                <ul>
-                                    <li><i class="fa fa-angle-right"></i><a href="#">s</a><span>(10)</span></li>
-                                    <li><i class="fa fa-angle-right"></i><a href="#">m</a><span>(12)</span></li>
-                                    <li><i class="fa fa-angle-right"></i><a href="#">l</a><span>(20)</span></li>
-                                    <li><i class="fa fa-angle-right"></i><a href="#">XL</a><span>(12)</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- product size end -->
-
-                        <!-- product tag start -->
-                        <div class="sidebar-widget mb-30">
-                            <div class="sidebar-title mb-10">
-                                <h3>tags</h3>
-                            </div>
-                            <div class="sidebar-widget-body">
-                                <div class="product-tag">
-                                    <a href="#">camera</a>
-                                    <a href="#">computer</a>
-                                    <a href="#">tablet</a>
-                                    <a href="#">watch</a>
-                                    <a href="#">smart phones</a>
-                                    <a href="#">handbag</a>
-                                    <a href="#">shoe</a>
-                                    <a href="#">men</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- product tag end -->
-
-                        <!-- sidebar banner start -->
                         {{--                        <div class="sidebar-widget mb-30">--}}
-                        {{--                            <div class="img-container fix img-full">--}}
-                        {{--                                <a href="#"><img src="{{ asset('galio/assets/img/banner/banner_shop.jpg') }}"--}}
-                        {{--                                                 alt=""></a>--}}
+                        {{--                            <div class="sidebar-title mb-10">--}}
+                        {{--                                <h3>filter by price</h3>--}}
+                        {{--                            </div>--}}
+                        {{--                            <div class="sidebar-widget-body">--}}
+                        {{--                                <div class="price-range-wrap">--}}
+                        {{--                                    <div class="price-range" data-min="50" data-max="400"></div>--}}
+                        {{--                                    <div class="range-slider">--}}
+                        {{--                                        <form action="#" class="d-flex justify-content-between">--}}
+                        {{--                                            <button class="filter-btn">filter</button>--}}
+                        {{--                                            <div class="price-input d-flex align-items-center">--}}
+                        {{--                                                <label for="amount">Price: </label>--}}
+                        {{--                                                <input type="text" id="amount">--}}
+                        {{--                                            </div>--}}
+                        {{--                                        </form>--}}
+                        {{--                                    </div>--}}
+                        {{--                                </div>--}}
                         {{--                            </div>--}}
                         {{--                        </div>--}}
+                        <!-- pricing filter end -->
+
+                        <!-- sidebar banner start -->
+                        <div class="sidebar-widget mb-30">
+                            <div class="img-container fix img-full">
+                                <a href="#"><img src="{{ asset('galio/assets/img/banner/banner_shop.jpg') }}"
+                                                 alt=""></a>
+                            </div>
+                        </div>
                         <!-- sidebar banner end -->
                     </div>
                 </div>
@@ -158,26 +106,26 @@
                                             <a href="#" data-target="list"><i class="fa fa-list"></i></a>
                                         </div>
                                         <div class="product-amount">
-                                            <p>Showing 1–16 of 21 results</p>
+                                            <p>{{ isset($categoryBySlug->name)? $categoryBySlug->name : ''}}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-5 col-md-6">
-                                    <div class="top-bar-right">
-                                        <div class="product-short">
-                                            <p>Sort By : </p>
-                                            <select class="nice-select" name="sortby">
-                                                <option value="trending">Relevance</option>
-                                                <option value="sales">Name (A - Z)</option>
-                                                <option value="sales">Name (Z - A)</option>
-                                                <option value="rating">Price (Low &gt; High)</option>
-                                                <option value="date">Rating (Lowest)</option>
-                                                <option value="price-asc">Model (A - Z)</option>
-                                                <option value="price-asc">Model (Z - A)</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{--                                <div class="col-lg-5 col-md-6">--}}
+                                {{--                                    <div class="top-bar-right">--}}
+                                {{--                                        <div class="product-short">--}}
+                                {{--                                            <p>Sort By : </p>--}}
+                                {{--                                            <select class="nice-select" name="sortby">--}}
+                                {{--                                                <option value="trending">Relevance</option>--}}
+                                {{--                                                <option value="sales">Name (A - Z)</option>--}}
+                                {{--                                                <option value="sales">Name (Z - A)</option>--}}
+                                {{--                                                <option value="rating">Price (Low &gt; High)</option>--}}
+                                {{--                                                <option value="date">Rating (Lowest)</option>--}}
+                                {{--                                                <option value="price-asc">Model (A - Z)</option>--}}
+                                {{--                                                <option value="price-asc">Model (Z - A)</option>--}}
+                                {{--                                            </select>--}}
+                                {{--                                        </div>--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
                             </div>
                         </div>
                         <!-- shop product top wrap start -->
@@ -194,19 +142,25 @@
                     <!-- product view wrapper area end -->
 
                     <!-- start pagination area -->
-                    <div class="paginatoin-area text-center pt-28">
-                        <div class="row">
-                            <div class="col-12">
-                                <ul class="pagination-box">
-                                    <li><a class="Previous" href="#">Previous</a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a class="Next" href="#"> Next </a></li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <!-- Paginador -->
+                        {{--                                        {{ $products->links() }}--}}
+                        {!! $products->links() !!}
                     </div>
+                    {{--                    <div class="paginatoin-area text-center pt-28">--}}
+                    {{--                        <div class="row">--}}
+                    {{--                            <div class="col-12">--}}
+                    {{--                                <ul class="pagination-box">--}}
+
+                    {{--                                    <li><a class="Previous" href="#">Previous</a></li>--}}
+                    {{--                                    <li class="active"><a href="#">1</a></li>--}}
+                    {{--                                    <li><a href="#">2</a></li>--}}
+                    {{--                                    <li><a href="#">3</a></li>--}}
+                    {{--                                    <li><a class="Next" href="#"> Next </a></li>--}}
+                    {{--                                </ul>--}}
+                    {{--                            </div>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                     <!-- end pagination area -->
 
                 </div>

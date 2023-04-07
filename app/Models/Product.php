@@ -22,6 +22,7 @@ class Product extends Model
         "sell_price",
         'short_description',
         'long_description',
+        'state',
         "status",
         'category_id',
         //        "subcategory_id",
@@ -61,7 +62,19 @@ class Product extends Model
         return $this->belongsTo(Subcategory::class);
     }
 
-    static function get_active_products() {
+    public static function get_active_products() {
         return self::where('status', 'ACTIVE');
+    }
+
+    public static function get_new_products() {
+        return self::where('state', 'NEW');
+    }
+
+    public static function get_like_new_products() {
+        return self::where('state', 'LIKE NEW');
+    }
+
+    public static function get_used_products() {
+        return self::where('state', 'USED');
     }
 }

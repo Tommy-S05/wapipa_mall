@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->decimal('sell_price', 12, 2);
             $table->mediumText('short_description');
             $table->longText('long_description');
+            $table->enum('state', ['NEW', 'LIKE NEW', 'USED']);
             $table->enum('status', ['ACTIVE', 'DEACTIVATE'])->default('ACTIVE');
             $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
